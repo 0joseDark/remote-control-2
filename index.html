@@ -43,4 +43,21 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-               
+                },
+                body: JSON.stringify({ command: command }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log(`Command ${command} executed successfully, new state: ${data.state}`);
+                } else {
+                    console.error(`Error: ${data.message}`);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
